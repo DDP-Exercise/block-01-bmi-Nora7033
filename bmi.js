@@ -23,6 +23,15 @@
  *     You - 2026-03-05
  *******************************************************/
 
+let firstname = prompt("First name:");
+let lastname = prompt("Last name:");
+
+let age = Number(prompt("Age:"));
+let height = prompt("Height (in m i.e. 1.81m):");
+height = Number(height.replace(",", "."));
+let weight = Number(prompt("Weight (in kg):"));
+let height_calculate = height * 100
+
 /*
  * TODO: Declare and assign all necessary constants and variables with user input.
  * Make sure, to help your users understand what they need to type in, by using clear prompt-instructions.
@@ -49,8 +58,32 @@ let bmr, bmi, normal, danger;
  * Be careful. Users make typos. Make sure that you have a valid answer before moving on.
  */
 
+let gender = prompt("Which calculation method would you prefer (male/female): ");
+gender = gender.toLowerCase();
+while (gender !== "male" && gender !== "female") {
+    gender = prompt("Answer invalid, please enter male or female: ");
+    gender = gender.toLowerCase();
+}
+if (gender === "female") {
+    bmr = 655 + 10 * weight + 2 * height_calculate - 6 * age;
+} else {
+    bmr = 66 + 14 * weight + 5 * height_calculate - 7 * age;
+}
 // TODO: To calculate the bmi, use the given formula with all the input you have collected.
 // TODO: Once you have the bmi, determine whether or not the weight is normal and if the condition is dangerous.
+
+bmi = (10000 * weight) / height_calculate**2;
+
+if (bmi >= 18 && bmi <= 25) {
+    normal = "Yes"
+} else {
+    normal = "No"
+}
+if (bmi < 16 || bmi >= 30) {
+    danger = "Yes"
+} else {
+    danger = "No"
+}
 
 /*
  * TODO: Create the correct output from all your data. Make sure to stick to the promised format! NO EXCEPTIONS!
@@ -72,7 +105,16 @@ let bmr, bmi, normal, danger;
  */
 
 console.log(LINE); // Logs the dashed-line.
-
+console.log("Name:\t\t\t" + lastname.toUpperCase() + ", " + firstname);
+console.log(LINE);
+console.log("Age:\t\t\t\t\t\t\t\t\t" + age + " Years");
+console.log("Height:\t\t\t\t\t\t\t\t" + height + "m");
+console.log("Weight:\t\t\t\t\t\t\t" + weight + " kg");
+console.log("Basal Metabolic Rate:\t" + bmr + " kcal");
+console.log("Body Mass Index:\t\t\t" + bmi);
+console.log("Normal Weight:\t\t\t\t" + normal);
+console.log("Danger:\t\t\t\t\t\t\t" + danger);
+console.log(LINE);
 /*
  * TODO: Make sure to TEST YOUR SOFTWARE! Does it work, when People are smaller than 1 meter? Or taller than 2?
  * Tip: An 18-Year old Woman, sized 160cm with 60 kg should have a BMR of 1467 kcal and a BMI of 23.4375.
